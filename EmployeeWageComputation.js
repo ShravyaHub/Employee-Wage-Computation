@@ -51,4 +51,48 @@ function totalWages(totalWage, dailyWage) {
 
 console.log("Employee wage with reduce = " + employeeDailyWageArray.reduce(totalWages, ));
 
+let dailyCounter = 0;
 
+function mapDayWithWage(dailyWage) {
+    dailyCounter++;
+    return dailyCounter + " = " + dailyWage;
+}
+
+let mapDayWithWageArray = employeeDailyWageArray.map(mapDayWithWage);
+console.log("Daily wage map: ");
+console.log(mapDayWithWageArray);
+
+function fulltimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+
+let fullDayWageArray = mapDayWithWageArray.filter(fulltimeWage);
+console.log("Daily wage filter when fulltime wage earned: ");
+console.log(fullDayWageArray);
+
+function findFulltimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+
+console.log("First time fulltime wage was earned on day: " + mapDayWithWageArray.find(findFulltimeWage));
+
+function isAllFulltimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+
+console.log("Check if all elements have fulltime wage: " + fullDayWageArray.every(isAllFulltimeWage));
+
+function isAnyParttimewage(dailyWage) {
+    return dailyWage.includes("80");
+}
+
+console.log("Check if any elements have parttime wage: " + mapDayWithWageArray.some(isAnyParttimewage));
+
+function totalDaysWorked(numberOfDays, dailyWage) {
+    if(dailyWage > 0) {
+        return numberOfDays + 1;
+    }
+    return numberOfDays;
+}
+
+console.log("Number of days employee worked = " + employeeDailyWageArray.reduce(totalDaysWorked, 0));
