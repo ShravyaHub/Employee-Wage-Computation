@@ -56,3 +56,12 @@ console.log("\nPart working day string: " + partWorkingDayStringArray);
 
 let nonWorkingDayNumbers = employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyHours == 0).map(dailyHoursAndWage => dailyHoursAndWage.dayNumber);
 console.log("Non-working day numbers: " + nonWorkingDayNumbers);
+
+console.log("First day when fulltime wage was earned: " + employeeDailyHoursAndWageArray.find(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 160));
+
+console.log("Is every element holding fulltime wage: " + employeeDailyHoursAndWageArray.every(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 160));
+
+console.log("Any parttime wage: " + employeeDailyHoursAndWageArray.some(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 80));
+
+console.log("Number of days employee worked = " + employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyWage > 0).length);
+
