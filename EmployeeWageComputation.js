@@ -24,14 +24,12 @@ function calculateDailyWage(employeeHours) {
 let totalEmployeeHours = 0;
 let totalWorkingDays = 0;
 let employeeDailyHoursAndWageArray = new Array();
-let employeeDailyWageMap = new Map();
 
 while(totalEmployeeHours <= MAXIMUM_HOURS_IN_A_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS) {
     totalWorkingDays++;
     let employeeCheck = Math.floor(Math.random() * 10) % 3;
     let employeeHours = getWorkingHours(employeeCheck);
     totalEmployeeHours += employeeHours;
-    employeeDailyWageMap.set(totalWorkingDays, calculateDailyWage(employeeHours));
     employeeDailyHoursAndWageArray.push (
     {
         dayNumber: totalWorkingDays,
@@ -50,19 +48,11 @@ let totalWages = employeeDailyHoursAndWageArray.filter(employeeDailyHoursAndWage
 let totalHours = employeeDailyHoursAndWageArray.filter(employeeDailyHoursAndWage => employeeDailyHoursAndWage.dailyWage > 0).reduce((totalHours, dailyHoursAndWage) => totalHours += dailyHoursAndWage.dailyHours, 0);
 console.log("Total hours = " + totalHours + ", total wages = " + totalWages);
 
-console.log("Logging full working days");
-employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyHours == 8).forEach(dailyHoursAndWage => console.log(dailyHoursAndWage.toString()));
+process.stdout.write("Logging full working days");
+employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyHours == 8).forEach(dailyHoursAndWage => process.stdout.write(dailyHoursAndWage.toString()));
 
 let partWorkingDayStringArray = employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyHours == 4).map(dailyHoursAndWage => dailyHoursAndWage.toString());
 console.log("\nPart working day string: " + partWorkingDayStringArray);
 
 let nonWorkingDayNumbers = employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyHours == 0).map(dailyHoursAndWage => dailyHoursAndWage.dayNumber);
 console.log("Non-working day numbers: " + nonWorkingDayNumbers);
-
-console.log("First day when fulltime wage was earned: " + employeeDailyHoursAndWageArray.find(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 160));
-
-console.log("Is every element holding fulltime wage: " + employeeDailyHoursAndWageArray.every(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 160));
-
-console.log("Any parttime wage: " + employeeDailyHoursAndWageArray.some(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 80));
-
-console.log("Number of days employee worked = " + employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyWage > 0).length);
