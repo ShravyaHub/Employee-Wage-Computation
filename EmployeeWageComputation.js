@@ -66,4 +66,3 @@ console.log("Is every element holding fulltime wage: " + employeeDailyHoursAndWa
 console.log("Any parttime wage: " + employeeDailyHoursAndWageArray.some(dailyHoursAndWage => dailyHoursAndWage.dailyWage == 80));
 
 console.log("Number of days employee worked = " + employeeDailyHoursAndWageArray.filter(dailyHoursAndWage => dailyHoursAndWage.dailyWage > 0).length);
-
